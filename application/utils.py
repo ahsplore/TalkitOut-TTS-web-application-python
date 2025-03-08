@@ -1,34 +1,15 @@
-from googletrans import Translator
-
-translator = Translator()
-
-# translator = Translator(service_urls=['translate.googleapis.com'])
-# pip install google_trans_new
-#
-# from google_trans_new import google_translator
-# translator = google_translator()
-# translate_text = translator.translate('สวัสดีจีน',lang_tgt='en')
-# print(translate_text)
+# from googletrans import Translator
+# translator = Translator()
 from deep_translator import GoogleTranslator
-
-
-# GoogleTranslator(source='auto', target='en').translate("guten Tag")
-
-# lang = single_detection('bonjour la vie', api_key='your_api_key')
-# print(lang)
+from langdetect import detect
 
 def detect_language(text):
-    detect_language_data = translator.detect(text)
-    lang = detect_language_data.lang
-    confidence = detect_language_data.confidence
-    return lang, confidence
-
+    lang = detect(text)
+    return lang, None 
 
 def translate_text(text, dest):
-    # translated_text = translator.translate(text, dest)
     translated_text = GoogleTranslator(source='auto', target=dest).translate(text)
     return translated_text
-
 
 LANGUAGES = {
     'af': 'afrikaans',
